@@ -1,5 +1,17 @@
+machine:
+  python:
+    version: 2.7
+  environment:
+    PYTHONPATH: ${PYTHONPATH}:${HOME}/google_appengine
+    GCLOUD_PROJECT: "gwyns-stash"
+    
 dependencies:
+  cache_directories:
+    - ~/google-cloud-sdk
   pre:
+    - if [ ! -d ~/google-cloud-sdk ]; then curl https://sdk.cloud.google.com | bash; fi:
+        environment:
+          CLOUDSDK_CORE_DISABLE_PROMPTS: 1
     # download gae sdk ...
     - curl -o $HOME/google_appengine_1.9.40.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.40.zip
     - unzip -q -d $HOME $HOME/google_appengine_1.9.40.zip
@@ -11,10 +23,3 @@ dependencies:
     - gcloud auth activate-service-account --key-file ${HOME}/client-secret.json
     # set project ...
     - gcloud config set project $GCLOUD_PROJECT
-  post:
-    - ln -s $VIRTUAL_ENV src/local
-    
-machine:
-  environment:
-    PYTHONPATH: ${PYTHONPATH}:${HOME}/google_appengine
-    GCLOUD_PROJECT: "gwyns-stash"
