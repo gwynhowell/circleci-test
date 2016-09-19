@@ -1,0 +1,9 @@
+# this requirements file lists all third-party dependencies for this project
+#
+# to install these dependencies in the src/lib dir, run:
+# pip install -r requirements.txt -t src/lib/
+#
+# Note: The `lib` directory is added to `sys.path` by `appengine_config.py`.
+
+
+pyyaml
