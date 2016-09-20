@@ -7,7 +7,7 @@ class MainPage(webapp.RequestHandler):
     
     def get(self):
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write('Hello, big bad circular World!')
+        self.response.out.write('Hello, massively bad circular World!')
 
 
 application = webapp.WSGIApplication([('/', MainPage)], debug=True)
