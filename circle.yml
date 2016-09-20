@@ -10,6 +10,10 @@ dependencies:
     - curl -o $HOME/google_appengine_1.9.40.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.40.zip
     - unzip -q -d $HOME $HOME/google_appengine_1.9.40.zip
     
+    # add dependencies to lib
+	- mkdir -p src/lib
+ 	- pip install -r requirements.txt -t src/lib
+    
     # update gcloud ...
     #- curl https://sdk.cloud.google.com | bash
     - gcloud --quiet components update app
