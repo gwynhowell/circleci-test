@@ -25,7 +25,7 @@ dependencies:
 
 test:
   override:
-    nosetests tests/
+    - nosetests tests/
 
 deployment:
   production:
