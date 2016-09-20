@@ -1,1 +1,1 @@
-srcappcfg.py update src
+appcfg.py update src
