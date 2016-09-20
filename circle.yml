@@ -22,13 +22,17 @@ dependencies:
     - echo $CLIENT_SECRET_APPOGEE_LEAVE_TEST3 | base64 --decode > ${HOME}/client-secret.json
     - gcloud auth activate-service-account --key-file ${HOME}/client-secret.json
     - gcloud config set project $GCLOUD_PROJECT
-    
+
+test:
+  override:
+    nosetests tests/
+
 deployment:
   production:
     branch: master
     commands:
       - . deploy_prod.sh
-      
+
 notify:
   webhooks:
     # A list of hook hashes, containing the URL field
