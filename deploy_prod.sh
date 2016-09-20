@@ -1,1 +1,1 @@
-google_appengine/appcfg.py update src
+python appcfg.py update src
