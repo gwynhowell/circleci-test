@@ -8,3 +8,9 @@
 
 pyyaml
 google-api-python-client
+Babel
+GoogleAppEngineCloudStorageClient
+python-dateutil
+jwt
+requests
+requests_oauthlib
