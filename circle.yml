@@ -24,3 +24,8 @@ deployment:
     branch: master
     commands:
       - . deploy_prod.sh
+      
+notify:
+  webhooks:
+    # A list of hook hashes, containing the URL field
+    - url: https://hooks.slack.com/services/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
