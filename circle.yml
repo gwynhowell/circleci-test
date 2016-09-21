@@ -27,7 +27,8 @@ dependencies:
 
 test:
   override:
-    - nosetests tests -v --with-coverage --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
+    #- nosetests tests -v --with-coverage --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
+    - nosetests tests -v --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
   post:
     - coveralls
 
