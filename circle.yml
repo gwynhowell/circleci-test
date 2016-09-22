@@ -1,6 +1,6 @@
 machine:
   environment:
-    PYTHONPATH: ${PYTHONPATH}:${HOME}/google_appengine
+    PYTHONPATH: ${PYTHONPATH}:${HOME}/google_appengine:${HOME}/google_appengine/lib/webapp2-2.5.2:${HOME}/google_appengine/lib/webob-1.2.3:${HOME}/google_appengine/lib/yaml/lib
     GCLOUD_PROJECT: "appogee-leave-gh"
     CLOUDSDK_CORE_DISABLE_PROMPTS: 1
 
