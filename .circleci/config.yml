@@ -5,7 +5,7 @@ jobs:
       #- image: circleci/python:2.7
       #- image: circleci/ruby:2.4.2-jessie-node
       # - image: alpine:3.7
-      -image: google/cloud-sdk
+      - image: google/cloud-sdk
     steps:
       - checkout
       - run:
