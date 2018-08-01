@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Ruby
+          command: apt-get install ruby
+      - run:
           name: Install Dependencies
           command: |
             pip install --upgrade pip
