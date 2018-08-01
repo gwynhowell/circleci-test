@@ -2,8 +2,8 @@ version: 2.0
 jobs:
   build:
     docker:
-      # - image: circleci/python:2.7
-      - image: alpine:3.7
+      - image: circleci/python:2.7
+      # - image: alpine:3.7
     steps:
       - checkout
       - run:
