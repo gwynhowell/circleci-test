@@ -6,9 +6,15 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Upgrade pip
+          name: Install Dependencies
           command: |
             pip install --upgrade pip
+            pip install python-coveralls pycrypto MySQL-python
+            gem update --system
+            gem install sass
+            gem install compass
+            curl -o $HOME/google_appengine_1.9.40.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.49.zip
+            unzip -q -d $HOME $HOME/google_appengine_1.9.40.zip
       - run:
           name: The First Step
           command: |
