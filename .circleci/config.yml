@@ -13,6 +13,7 @@ jobs:
           name: Install Dependencies
           command: |
             sudo apt-get install ruby
+            pip install --upgrade pip
   print:
     docker:
       - image: circleci/python:2.7
@@ -33,6 +34,12 @@ workflows:
   build-test-and-deploy:
     jobs:
       - build
-  print:
-    jobs:
       - print
+
+#pip install --upgrade pip
+#pip install python-coveralls pycrypto MySQL-python --user
+#gem update --system
+#gem install sass
+#gem install compass
+#curl -o $HOME/google_appengine_1.9.40.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.49.zip
+#unzip -q -d $HOME $HOME/google_appengine_1.9.40.zip
