@@ -23,7 +23,7 @@ jobs:
           name: Install Gems
           command: |
             # gem update --system
-            gem install compass
+            sudo gem install compass
   print:
     docker:
       - image: circleci/python:2.7
