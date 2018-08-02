@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Install Ruby
           command: |
-            apt-get install ruby-dev
+            sudo apt-get install ruby-dev
       # - run:
       #     name: Install Pips
       #     command: |
@@ -23,7 +23,8 @@ jobs:
           name: Install Gems
           command: |
             # gem update --system
-            sudo gem install compass
+            gem install sass
+            gem install compass
   print:
     docker:
       - image: circleci/python:2.7
@@ -49,7 +50,5 @@ workflows:
             - build
 
 
-#gem install sass
-#gem install compass
 #curl -o $HOME/google_appengine_1.9.40.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.49.zip
 #unzip -q -d $HOME $HOME/google_appengine_1.9.40.zip
