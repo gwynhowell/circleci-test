@@ -12,12 +12,12 @@ jobs:
       - run:
           name: Install Ruby
           command: |
-            sudo apt-get install ruby ruby-dev
-      - run:
-          name: Install Pips
-          command: |
-            pip install --upgrade pip
-            pip install python-coveralls pycrypto MySQL-python --user
+            sudo apt-get install ruby-dev
+      # - run:
+      #     name: Install Pips
+      #     command: |
+      #       pip install --upgrade pip
+      #       pip install python-coveralls pycrypto MySQL-python --user
 
       - run:
           name: Install Gems
