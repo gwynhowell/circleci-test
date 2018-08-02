@@ -14,6 +14,8 @@ jobs:
           command: |
             sudo apt-get install ruby
             pip install --upgrade pip
+            pip install --upgrade pip
+            pip install python-coveralls pycrypto MySQL-python --user
   print:
     docker:
       - image: circleci/python:2.7
@@ -35,9 +37,10 @@ workflows:
     jobs:
       - build
       - print
+        requires:
+          build
 
-#pip install --upgrade pip
-#pip install python-coveralls pycrypto MySQL-python --user
+
 #gem update --system
 #gem install sass
 #gem install compass
