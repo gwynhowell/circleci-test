@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Install Ruby
           command: |
-            sudo apt-get install ruby-dev
+            apt-get install ruby-dev
       # - run:
       #     name: Install Pips
       #     command: |
