@@ -38,7 +38,7 @@ workflows:
       - build
       - print
         requires:
-          build
+          - build
 
 
 #gem update --system
