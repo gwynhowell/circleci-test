@@ -3,7 +3,6 @@ jobs:
   build:
     working_directory: ~/ahr
     docker:
-      - image: circleci/node:10.8-jessie-browsers
       - image: circleci/python:2.7
 
       #- image: circleci/ruby:2.4.2-jessie-node
@@ -26,29 +25,30 @@ jobs:
 
       - restore_cache:
           keys:
-            - pip-packages-v1
+            - pip-packages-v2
 
       - run:
           name: Install Pips
           command: |
             pip install --upgrade pip
-            # sudo pip install python-coveralls pycrypto MySQL-python nose --user
-            pip install nose --user
+            # pip install python-coveralls pycrypto MySQL-python nose --user
+            pip install pycrypto MySQL-python nose --user
 
       - save_cache:
           paths:
             - ~/.local/bin
-          key: pip-packages-v1
+          key: pip-packages-v2
 
       # - run:
       #     name: Install Gems
       #     command: |
       #       # gem update --system
       #       sudo gem install sass compass
-      - run:
-          name: Install npm's
-          command: |
-            npm install -g karma karma-mocha karma-requirejs karma-chai karma-chrome-launcher karma-firefox-launcher karma-junit-reporter
+
+      # - run:
+      #     name: Install npm's
+      #     command: |
+      #       npm install -g karma karma-mocha karma-requirejs karma-chai karma-chrome-launcher karma-firefox-launcher karma-junit-reporter
       - run:
           name: Install gcloud
           command: |
