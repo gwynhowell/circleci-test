@@ -29,7 +29,7 @@ jobs:
           name: Install gcloud
           command: |
             CLOUD_SDK_URL=https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-210.0.0-linux-x86_64.tar.gz
-            curl $CLOUD_SDK_URL | tar -xz
+            curl $CLOUD_SDK_URL | tar -xz -C ~/
             sh ~/google-cloud-sdk/install.sh --path-update true
             ~/google-cloud-sdk/bin/gcloud components install app-engine-python
 
