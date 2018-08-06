@@ -23,7 +23,7 @@ jobs:
             more $BASH_ENV
 
             GAE_PATH=~/google-cloud-sdk/platform/google_appengine
-            echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml-3.10/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> $BASH_ENV
+            echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml-3.10:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> $BASH_ENV
             echo export PATH=$PATH:/home/circleci/.local/bin >> $BASH_ENV
             source /home/circleci/.bashrc
             echo $GAE_PATH
