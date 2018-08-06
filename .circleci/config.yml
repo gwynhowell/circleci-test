@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/ahr
     docker:
       - image: circleci/python:2.7
-      - image: circleci/node:4.8.2-jessie
+      - image: circleci/node:10.8-jessie-browsers
       #- image: circleci/ruby:2.4.2-jessie-node
       # - image: alpine:3.7
       # - image: google/cloud-sdk
