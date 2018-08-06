@@ -19,7 +19,7 @@ jobs:
           command: |
             pip install --upgrade pip
             # sudo pip install python-coveralls pycrypto MySQL-python nose --user
-            sudo pip install python-coveralls pycrypto MySQL-python nose
+            pip install python-coveralls pycrypto MySQL-python nose
       # - run:
       #     name: Install Gems
       #     command: |
