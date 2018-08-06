@@ -23,8 +23,8 @@ jobs:
             # source /home/circleci/.bashrc
 
       - restore_cache:
-        keys:
-          - pip-packages-v1
+          keys:
+            - pip-packages-v1
 
       - run:
           name: Install Pips
@@ -34,9 +34,9 @@ jobs:
             pip install nose --user
 
       - save_cache:
-        paths:
-          - ~/.local/bin
-        key: pip-packages-v1
+          paths:
+            - ~/.local/bin
+          key: pip-packages-v1
 
       # - run:
       #     name: Install Gems
