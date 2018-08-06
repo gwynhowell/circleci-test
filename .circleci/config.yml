@@ -12,18 +12,42 @@ jobs:
       - run:
           name: Install Ruby
           command: |
-            sudo apt-get install ruby-dev
-      # - run:
-      #     name: Install Pips
-      #     command: |
-      #       pip install --upgrade pip
-      #       pip install python-coveralls pycrypto MySQL-python --user
+            # sudo apt-get install ruby-dev
+            sudo apt-get install ruby-sass
+      - run:
+          name: Install Pips
+          command: |
+            pip install --upgrade pip
+            #pip install python-coveralls pycrypto MySQL-python nose --user
+            pip install nose --user
 
       - run:
           name: Install Gems
           command: |
             # gem update --system
             sudo gem install sass compass
+      - run:
+          name: Install gcloud
+          command: |
+            - curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-210.0.0-linux-x86_64.tar.gz
+            - tar -xzf google-cloud-sdk.tar.gz
+            - ./google-cloud-sdk/install.sh --quiet --path-update true
+            - google-cloud-sdk/bin/gcloud --quiet components install app-engine-python
+
+            - GAE_PATH=~/google-cloud-sdk/platform/google_appengine
+            # - PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib
+            - echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> ~/.bashrc
+      - run:
+        name: Run tests
+        command: |
+          mkdir artifacts
+          # - nosetests tests src/appogee/tests -v --with-coverage --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
+          - nosetests src/tests --with-xunit --xunit-file artifacts/nosetests.xml
+      - store_test_results:
+          path: ~/artifacts
+      - store_artifacts:
+          path: ~/artifacts
+
   print:
     docker:
       - image: circleci/python:2.7
@@ -47,7 +71,3 @@ workflows:
       - print:
           requires:
             - build
-
-
-#curl -o $HOME/google_appengine_1.9.40.zip https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.49.zip
-#unzip -q -d $HOME $HOME/google_appengine_1.9.40.zip
