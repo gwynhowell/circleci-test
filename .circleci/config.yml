@@ -20,7 +20,6 @@ jobs:
             pip install --upgrade pip
             #pip install python-coveralls pycrypto MySQL-python nose --user
             pip install nose --user
-
       - run:
           name: Install Gems
           command: |
@@ -31,17 +30,18 @@ jobs:
           command: |
             curl -o ~/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-210.0.0-linux-x86_64.tar.gz
             tar -xzf ~/google-cloud-sdk.tar.gz
-            #.~/google-cloud-sdk/install.sh --quiet --path-update true
-            #~/google-cloud-sdk/bin/gcloud --quiet components install app-engine-python
+            sh ~/google-cloud-sdk/install.sh --quiet --path-update true
+            ~/google-cloud-sdk/bin/gcloud --quiet components install app-engine-python
 
-            #GAE_PATH=~/google-cloud-sdk/platform/google_appengine
-            #echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> ~/.bashrc
+            GAE_PATH=~/google-cloud-sdk/platform/google_appengine
+            echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> ~/.bashrc
+            source ~/.bashrc
             #PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib
       - run:
           name: Run tests
           command: |
             mkdir ~/artifacts
-            - nosetests src/tests --with-xunit --xunit-file ~/artifacts/nosetests.xml
+            nosetests src/tests --with-xunit --xunit-file ~/artifacts/nosetests.xml
           # - nosetests tests src/appogee/tests -v --with-coverage --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
       - store_test_results:
           path: ~/artifacts
