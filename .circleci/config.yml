@@ -20,7 +20,7 @@ jobs:
             pip install --upgrade pip
             # sudo pip install python-coveralls pycrypto MySQL-python nose --user
             pip install python-coveralls pycrypto MySQL-python nose --user
-            export PATH=$PATH:/home/circleci/.local/bin
+
       # - run:
       #     name: Install Gems
       #     command: |
@@ -43,6 +43,7 @@ jobs:
           command: |
             source ~/.bashrc
             mkdir ~/artifacts
+            PATH=$PATH:/home/circleci/.local/bin
             nosetests tests --with-xunit --xunit-file ~/artifacts/nosetests.xml
           # - nosetests tests src/appogee/tests -v --with-coverage --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
       - store_test_results:
