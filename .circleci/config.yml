@@ -15,11 +15,20 @@ jobs:
       #       # sudo apt-get install ruby-dev
       #       sudo apt-get install ruby-sass
       - run:
+          name: Setup Environment Variables
+          command: |
+            echo 'export PATH="$GOPATH/bin:$PATH"' >> $BASH_ENV
+            echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> $BASH_ENV
+
+            GAE_PATH=~/google-cloud-sdk/platform/google_appengine
+            echo 'export PYTHONPATH="${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml-3.10/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib"' >> $BASH_ENV
+            echo 'export PATH="$PATH:/home/circleci/.local/bin"' >> $BASH_ENV
+      - run:
           name: Install Pips
           command: |
             pip install --upgrade pip
             # sudo pip install python-coveralls pycrypto MySQL-python nose --user
-            pip install python-coveralls pycrypto MySQL-python nose --user
+            pip install nose --user
 
       # - run:
       #     name: Install Gems
@@ -34,15 +43,15 @@ jobs:
             sh ~/google-cloud-sdk/install.sh --quiet --path-update true
             ~/google-cloud-sdk/bin/gcloud --quiet components install app-engine-python
 
-            GAE_PATH=~/google-cloud-sdk/platform/google_appengine
-            echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml-3.10/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> ~/.bashrc
+            #GAE_PATH=~/google-cloud-sdk/platform/google_appengine
+            #echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml-3.10/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> ~/.bashrc
             #PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib
       - run:
           name: Run tests
           command: |
             mkdir ~/artifacts
-            PATH=$PATH:/home/circleci/.local/bin
-            source ~/.bashrc
+            #PATH=$PATH:/home/circleci/.local/bin
+            #source ~/.bashrc
 
             nosetests tests --with-xunit --xunit-file ~/artifacts/nosetests.xml
           # - nosetests tests src/appogee/tests -v --with-coverage --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
