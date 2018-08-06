@@ -21,6 +21,11 @@ jobs:
             echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml-3.10:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> $BASH_ENV
             echo export PATH=$PATH:/home/circleci/.local/bin >> $BASH_ENV
             # source /home/circleci/.bashrc
+
+      - restore_cache:
+        keys:
+          - pip-packages-v1
+
       - run:
           name: Install Pips
           command: |
@@ -28,11 +33,20 @@ jobs:
             # sudo pip install python-coveralls pycrypto MySQL-python nose --user
             pip install nose --user
 
+      - save_cache:
+        paths:
+          - ~/.local/bin
+        key: pip-packages-v1
+
       # - run:
       #     name: Install Gems
       #     command: |
       #       # gem update --system
       #       sudo gem install sass compass
+      - run:
+          name: Install npm's
+          command: |
+            npm install -g karma karma-mocha karma-requirejs karma-chai karma-chrome-launcher karma-firefox-launcher karma-junit-reporter
       - run:
           name: Install gcloud
           command: |
@@ -52,7 +66,7 @@ jobs:
             #source ~/.bashrc
 
             nosetests tests --with-xunit --xunit-file ~/artifacts/nosetests.xml
-          # - nosetests tests src/appogee/tests -v --with-coverage --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
+            # - nosetests tests src/appogee/tests -v --with-coverage --with-xunit --xunit-file $CIRCLE_TEST_REPORTS/nosetests.xml
       - store_test_results:
           path: ~/artifacts
       - store_artifacts:
