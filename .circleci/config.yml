@@ -3,7 +3,8 @@ jobs:
   build:
     working_directory: ~/ahr
     docker:
-      - image: circleci/python:2.7
+      #- image: circleci/python:2.7
+      - image: appogeehr/cci-gaepython/
 
       #- image: circleci/ruby:2.4.2-jessie-node
       # - image: alpine:3.7
