@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/ahr
     docker:
       #- image: circleci/python:2.7
-      - image: appogeehr/cci-gaepython:0.2
+      - image: appogeehr/cci-gaepython:0.3
     steps:
       - checkout
       - run:

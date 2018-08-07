@@ -9,6 +9,7 @@ RUN apt-get update \
       curl \
       ruby-sass \
       python-dev \
+      python-pip \
       gnupg
 
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk-stretch main" > /etc/apt/sources.list.d/google-cloud-sdk.list
