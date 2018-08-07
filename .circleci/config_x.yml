@@ -4,9 +4,18 @@ jobs:
     working_directory: ~/ahr
     docker:
       #- image: circleci/python:2.7
-      - image: appogeehr/cci-gaepython:0.2
+      - image: appogeehr/cci-gaepython:0.1
+
+      #- image: circleci/ruby:2.4.2-jessie-node
+      # - image: alpine:3.7
+      # - image: google/cloud-sdk
     steps:
       - checkout
+      # - run:
+      #     name: Install Ruby
+      #     command: |
+      #       # sudo apt-get install ruby-dev
+      #       sudo apt-get install ruby-sass
       - run:
           name: Setup Environment Variables
           command: |
@@ -41,6 +50,17 @@ jobs:
       #     name: Install npm's
       #     command: |
       #       npm install -g karma karma-mocha karma-requirejs karma-chai karma-chrome-launcher karma-firefox-launcher karma-junit-reporter
+      - run:
+          name: Install gcloud
+          command: |
+            CLOUD_SDK_URL=https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-210.0.0-linux-x86_64.tar.gz
+            curl $CLOUD_SDK_URL | tar -xz -C ~/
+            sh ~/google-cloud-sdk/install.sh --quiet --path-update true
+            ~/google-cloud-sdk/bin/gcloud --quiet components install app-engine-python
+
+            #GAE_PATH=~/google-cloud-sdk/platform/google_appengine
+            #echo export PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml-3.10/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib >> ~/.bashrc
+            #PYTHONPATH=${PYTHONPATH}:$GAE_PATH:$GAE_PATH/lib/webapp2-2.5.2:$GAE_PATH/lib/webob-1.2.3:$GAE_PATH/lib/yaml/lib:$GAE_PATH/lib/jinja2-2.6:${HOME}/ahr/src/lib
       - run:
           name: Run tests
           command: |
