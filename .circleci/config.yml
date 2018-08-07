@@ -99,7 +99,3 @@ workflows:
       - print:
           requires:
             - build
-          filters:
-            branches:
-              only:
-                - cci2
