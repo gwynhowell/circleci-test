@@ -8,7 +8,7 @@ RUN apt-get update \
       apt-transport-https \
       curl \
       ruby-sass \
-      python-dev \
+      python2.7 \
       python-pip \
       gnupg
 
